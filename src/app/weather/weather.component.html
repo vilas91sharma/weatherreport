@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand">Weather report for European Countries</a>
+</nav>
+<table class="table table-hover">
+  <thead class="table-warning">
+    <tr>
+      <th class="col-xs-4">City</th>
+      <th class="col-xs-1">Sunrise</th>
+      <th class="col-xs-1">Sunset</th>
+      <th class="col-xs-1">Temperature</th>
+      <th class="col-xs-1">Weather</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let city of sharedWeatherData">      
+      <td class="col-xs-4"><a [routerLink]="['forecast', city.city.name]" routerLinkActive="active">{{city.city.name}}</a></td>     
+      <td class="col-xs-1">{{timeConverter(city.city.sunrise)}}</td>      
+      <td class="col-xs-1">{{timeConverter(city.city.sunset)}}</td>    
+      <td class="col-xs-1">{{kelvinConverter(city.list[0].main.temp) | number : '1.2-2'}}°C</td>    
+      <td class="col-xs-1"><img src="http://openweathermap.org/img/w/{{city.list[0].weather[0].icon}}.png"></td>    
+    </tr>
+  </tbody>
+  
+</table>
+

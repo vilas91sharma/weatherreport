@@ -1,0 +1,26 @@
+<div *ngIf="forecastWeatherData[0]">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">Five days forcast for - {{forecastWeatherData[0].name}}</a>
+          
+        <form class="form-inline">
+            <button class="btn btn-outline-success" type="button" [routerLink]="['']" >Home</button>
+            
+          </form>
+      </nav>    
+    <table class="table" >
+        <thead>
+          <tr>
+            <th class="col-xs-4">Date</th>
+            <th class="col-xs-1">Temperature</th>
+            <th class="col-xs-1">Sea Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let city of forecastWeatherData[0].details">      
+            <td class="col-xs-4">{{city.date}}</td>         
+            <td class="col-xs-1">{{kelvinConverter(city.temperature) | number : '1.2-2'}}°C</td>  
+            <td class="col-xs-4">{{city.seaLevel}}</td>        
+          </tr>
+        </tbody>        
+      </table>
+</div>
